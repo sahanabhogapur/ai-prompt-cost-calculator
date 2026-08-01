@@ -1,1 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Prompt Cost Calculator</title>
 
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f7fb;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.container{
+background:#fff;
+padding:30px;
+width:350px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:6px;
+box-sizing:border-box;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+margin-top:15px;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+margin-top:20px;
+font-size:20px;
+text-align:center;
+font-weight:bold;
+color:#16a34a;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>AI Prompt Cost Calculator</h2>
+
+<label>Input Tokens</label>
+<input id="inputTokens" type="number">
+
+<label>Output Tokens</label>
+<input id="outputTokens" type="number">
+
+<label>Input Price per 1M Tokens ($)</label>
+<input id="inputPrice" type="number" step="0.01">
+
+<label>Output Price per 1M Tokens ($)</label>
+<input id="outputPrice" type="number" step="0.01">
+
+<button onclick="calculate()">Calculate</button>
+
+<div class="result" id="result">$0.00</div>
+
+</div>
+
+<script>
+
+function calculate(){
+
+const inputTokens=parseFloat(document.getElementById("inputTokens").value)||0;
+
+const outputTokens=parseFloat(document.getElementById("outputTokens").value)||0;
+
+const inputPrice=parseFloat(document.getElementById("inputPrice").value)||0;
+
+const outputPrice=parseFloat(document.getElementById("outputPrice").value)||0;
+
+const cost=(inputTokens/1000000)*inputPrice+(outputTokens/1000000)*outputPrice;
+
+document.getElementById("result").innerHTML="$"+cost.toFixed(6);
+
+}
+
+</script>
+
+</body>
+</html>
